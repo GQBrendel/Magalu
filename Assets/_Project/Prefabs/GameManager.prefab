@@ -90,6 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHead: 0
+  _playerHeadSprites:
+  - {fileID: -6980298586082506296, guid: a4396c221e9480b4083ef5e0bdbcb03e, type: 3}
+  - {fileID: 21300006, guid: cea2c9bf87b0c4dfdafb697a3ff00959, type: 3}
+  - {fileID: 21300000, guid: 6e54ac56108434547ae2a08cf025c6fd, type: 3}
 --- !u!1 &1887820434322158957
 GameObject:
   m_ObjectHideFlags: 0

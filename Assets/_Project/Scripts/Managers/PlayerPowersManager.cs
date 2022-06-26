@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerPowersManager : MonoBehaviour
 {
     [SerializeField] private int _currentHead;
+    [SerializeField] private Sprite[] _playerHeadSprites;
 
     private OnPlatform[] _onPlatforms;
 
@@ -18,14 +19,35 @@ public class PlayerPowersManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetButtonDown("SwapHead"))
         {
-            TurnOnPlatforms();
+            SwapHead();
         }
-        else if (Input.GetKey(KeyCode.Y))
+    }
+
+    private void SwapHead()
+    {
+        _currentHead++;
+
+        if(_currentHead >= _playerHeadSprites.Length)
+        {
+            _currentHead = 0;
+        }
+        
+        if(_currentHead == 0)
         {
             TurnOffPlatforms();
         }
+        else if (_currentHead == 1) //Ligadora de plataformas
+        {
+            TurnOnPlatforms();
+        }
+        else if(_currentHead == 2)
+        {
+            TurnOffPlatforms();
+        }
+
+        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
     }
 
     private void TurnOnPlatforms()
