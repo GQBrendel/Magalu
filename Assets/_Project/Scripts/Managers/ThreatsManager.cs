@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class ThreatsManager : MonoBehaviour
 {
-    public delegate void DeathHandler();
+    public delegate void DeathHandler(Transform t);
     public DeathHandler OnChacterDeath;
 
     private DeathTrigger[] _deathTriggers;
+    private Drone[] _drones;
 
     private void Awake()
     {
         _deathTriggers = FindObjectsOfType<DeathTrigger>(true);
+        _drones = FindObjectsOfType<Drone>(true);
         SetUpEventListeners();
     }
 
@@ -22,11 +24,16 @@ public class ThreatsManager : MonoBehaviour
         {
             dt.OnChacterDeath += HandleCharacterDeath;
         }
+
+        foreach (var dt in _drones)
+        {
+            dt.OnChacterDeath += HandleCharacterDeath;
+        }
     }
 
-    private void HandleCharacterDeath()
+    private void HandleCharacterDeath(Transform t)
     {
-        OnChacterDeath?.Invoke();
+        OnChacterDeath?.Invoke(t);
     }
 
     private void OnDestroy()
@@ -37,6 +44,11 @@ public class ThreatsManager : MonoBehaviour
     private void RemoveEventListeners()
     {
         foreach (var dt in _deathTriggers)
+        {
+            dt.OnChacterDeath -= HandleCharacterDeath;
+        }
+
+        foreach (var dt in _drones)
         {
             dt.OnChacterDeath -= HandleCharacterDeath;
         }

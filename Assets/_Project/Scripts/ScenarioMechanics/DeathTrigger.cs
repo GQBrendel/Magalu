@@ -5,10 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class DeathTrigger : MonoBehaviour
 {
-    public delegate void DeathHandler();
+    public delegate void DeathHandler(Transform t);
     public DeathHandler OnChacterDeath;
 
     private BoxCollider2D _boxCollider2D;
+    [SerializeField] Transform respawn;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class DeathTrigger : MonoBehaviour
         bool isCharacer = collision.TryGetComponent(out character);
         if (isCharacer)
         {
-            OnChacterDeath?.Invoke();
+            OnChacterDeath?.Invoke(respawn);
         }
     }
 }

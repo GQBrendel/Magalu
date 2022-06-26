@@ -61,13 +61,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ReturnCharacterToOrigin()
+    private void ReturnCharacterToOrigin(Transform t)
     {
         StartCoroutine(WaitDelay());
         IEnumerator WaitDelay()
         {
             yield return new WaitForSeconds(GameConfig.Instance.DeathTriggerDelay);
-            _character.transform.position = _characterOriginPosition.position;
+            _character.transform.position = t.position;
         }
     }
 

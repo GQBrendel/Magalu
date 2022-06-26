@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 6736615141770938227}
   - component: {fileID: 6736615141770938224}
   - component: {fileID: 6736615141770938225}
+  - component: {fileID: 5481461873624096154}
   m_Layer: 9
   m_Name: OnPlatform
   m_TagString: Untagged
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6736615141770938252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -144,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1210213, y: 0.44905233}
+  m_Size: {x: 4.32, y: 0.44905233}
   m_EdgeRadius: 0
 --- !u!251 &6736615141770938224
 PlatformEffector2D:
@@ -178,6 +179,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boxCollider: {fileID: 6736615141770938227}
+--- !u!114 &5481461873624096154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736615141770938252}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: c3e8a4ea196d85764d103c0da9d0776800000000df1541744f1c97a2
+  m_ShapePath:
+  - {x: -2.0376587, y: -0.17696571, z: 0}
+  - {x: -2.0245056, y: 0.306036, z: 0}
+  - {x: 1.9811707, y: 0.28524208, z: 0}
+  - {x: 1.9710388, y: -0.25891876, z: 0}
+  - {x: 1.7487793, y: 0.17030525, z: 0}
+  - {x: -1.7884216, y: 0.16591835, z: 0}
+  m_ShapePathHash: -2048931811
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -425372
 --- !u!1 &6736615142999600342
 GameObject:
   m_ObjectHideFlags: 0
