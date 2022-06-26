@@ -7,10 +7,13 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _characterOriginPosition;
     [SerializeField] private ThreatsManager _threatsManager;
-    [SerializeField] private UpgradePod _upgradePod;
 
+    [SerializeField] private UIManager _uIManager;
     [SerializeField] private GameObject _closeUpCamera;
+    [SerializeField] private PlayerPowersManager _playerPowerManager;
 
+
+    private UpgradePod[] _upgradePods;
     private Character _character;
 
 
@@ -18,13 +21,44 @@ public class GameManager : MonoBehaviour
     {
         _character = FindObjectOfType<Character>(true);
         _threatsManager.OnChacterDeath += ReturnCharacterToOrigin;
+        _upgradePods = FindObjectsOfType<UpgradePod>(true);
 
-        _upgradePod.OnUpgradeStarted += HandleUpgradeStart;
+        _uIManager.OnUpgradeFinished += HandleUpgradeFinished;
+
+        foreach (var pod in _upgradePods)
+        {
+            pod.OnUpgradeStarted += HandleUpgradeStart;
+        }
+    }
+
+    private void DIsablePodLight()
+    {
+        foreach (var pod in _upgradePods)
+        {
+            pod.TurnOff();
+        }
+
+    }
+
+    private void HandleUpgradeFinished()
+    {
+        _playerPowerManager.EquipPower();
+        _character.EnableControl(); 
+        DIsablePodLight();
+        _closeUpCamera.SetActive(false);
     }
 
     private void HandleUpgradeStart()
     {
+        _playerPowerManager.CanSwap = false;
         _closeUpCamera.SetActive(true);
+        StartCoroutine(WaitForPodZoomRoutine());
+
+        IEnumerator WaitForPodZoomRoutine()
+        {
+            yield return new WaitForSeconds(GameConfig.Instance.PodDelay);
+            _uIManager.MoveUpgradeIcon();
+        }
     }
 
     private void ReturnCharacterToOrigin()

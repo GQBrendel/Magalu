@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PlayerPowersManager : MonoBehaviour
     [SerializeField] private GameObject _dorsoLight;
     [SerializeField] private UIManager _uIManager;
 
+    public bool CanSwap { get; set; }
+
     private PowerUp[] _powerUps;
 
     private OnPlatform[] _onPlatforms;
@@ -19,21 +22,99 @@ public class PlayerPowersManager : MonoBehaviour
 
     private UpgradePod[] _upgradePods;
 
+    private PowerUp _currentPowerUp;
+
     public bool _holdingAPowerUp;
 
     private void Awake()
     {
         _character = FindObjectOfType<Character>(true); 
-        _onPlatforms = FindObjectsOfType<OnPlatform>();
-        _powerUps = FindObjectsOfType<PowerUp>();
-        _upgradePods = FindObjectsOfType<UpgradePod>();
+        _onPlatforms = FindObjectsOfType<OnPlatform>(true);
+        _powerUps = FindObjectsOfType<PowerUp>(true);
+        _upgradePods = FindObjectsOfType<UpgradePod>(true);
         SetPowerUpListeners();
+        CanSwap = true;
+    }
+    private void Update()
+    {
+        if (!CanSwap)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("SwapHead"))
+        {
+            SwapHead();
+        }
+
+        else if (Input.GetButtonDown("Fire3"))
+        {
+            SwapDorso();
+        }
     }
     private void SetPowerUpListeners()
     {
         foreach (var pw in _powerUps)
         {
             pw.OnPowerUpColled += HandlePowerUpCollected;
+        }
+    }
+
+
+    public void EquipPower()
+    {
+        CanSwap = true;
+        _holdingAPowerUp = false;
+        switch (_currentPowerUp.BodyPart)
+        {
+            case BodyPartEnum.Head:
+
+                EquipHead(_currentPowerUp.PartIndex);
+
+                break;
+            case BodyPartEnum.Body:
+                EquipDorso(_currentPowerUp.PartIndex);
+                break;
+            case BodyPartEnum.Feet:
+                break;
+        }
+    }
+
+    private void EquipDorso(int index)
+    {
+        _currentDorso = index;        
+        _character.SetDorsoSprite(_playerDorsoSprites[_currentDorso]);
+
+        if (_currentDorso == 0)
+        {
+            _dorsoLight.SetActive(false);
+        }
+        else if (_currentDorso == 1)
+        {
+            _dorsoLight.SetActive(true);
+        }
+        else if (_currentDorso == 2)
+        {
+            _dorsoLight.SetActive(false);
+        }
+    }
+
+    private void EquipHead(int index)
+    {
+        _currentHead = index;
+        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
+
+        if (_currentHead == 0)
+        {
+            TurnOffPlatforms();
+        }
+        else if (_currentHead == 1) //Ligadora de plataformas
+        {
+            TurnOnPlatforms();
+        }
+        else if (_currentHead == 2)
+        {
+            TurnOffPlatforms();
         }
     }
 
@@ -44,6 +125,7 @@ public class PlayerPowersManager : MonoBehaviour
             return;
         }
 
+        _currentPowerUp = pw;
         _holdingAPowerUp = true;
         pw.gameObject.SetActive(false);
         _uIManager.ShowItemIcon(pw.Sprite.sprite);
@@ -53,29 +135,9 @@ public class PlayerPowersManager : MonoBehaviour
             pod.TurnOn();
         }
 
-        switch (pw.BodyPart)
-        {
-            case BodyPartEnum.Head:
-                break;
-            case BodyPartEnum.Body:
-                break;
-            case BodyPartEnum.Feet:
-                break;
-        }
+       
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("SwapHead"))
-        {
-            SwapHead();
-        }
-
-        if (Input.GetButtonDown("Fire3"))
-        {
-            SwapDorso();
-        }
-    }
 
     private void SwapDorso()
     {
@@ -84,15 +146,9 @@ public class PlayerPowersManager : MonoBehaviour
         if (_currentDorso >= _playerDorsoSprites.Length)
         {
             _currentDorso = 0;
-            _dorsoLight.SetActive(false);
-        }
-        else
-        {
-            _dorsoLight.SetActive(true);
         }
 
-        _character.SetDorsoSprite(_playerDorsoSprites[_currentDorso]);
-
+        EquipDorso(_currentDorso);
     }
 
     private void SwapHead()
@@ -103,21 +159,8 @@ public class PlayerPowersManager : MonoBehaviour
         {
             _currentHead = 0;
         }
-        
-        if(_currentHead == 0)
-        {
-            TurnOffPlatforms();
-        }
-        else if (_currentHead == 1) //Ligadora de plataformas
-        {
-            TurnOnPlatforms();
-        }
-        else if(_currentHead == 2)
-        {
-            TurnOffPlatforms();
-        }
 
-        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
+        EquipHead(_currentHead);
     }
 
     private void TurnOnPlatforms()
