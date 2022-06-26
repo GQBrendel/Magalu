@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0957791031bbc66459b3a36690dc3279, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  DeathTriggerDelay: 0.55
+  DeathTriggerDelay: 0.5
   TimeToTurnOn: 0.35
   TimeToTurnOff: 0.35
   PodDelay: 2

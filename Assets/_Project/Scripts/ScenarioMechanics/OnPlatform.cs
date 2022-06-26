@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class OnPlatform : MonoBehaviour
 {
@@ -11,12 +12,14 @@ public class OnPlatform : MonoBehaviour
     {
         _shouldBeOn = true;
         LeanTween.alpha(this.gameObject, 1, GameConfig.Instance.TimeToTurnOn).setOnComplete(CompleteOn);
+        GetComponent<ShadowCaster2D>().enabled = _shouldBeOn;
     }
     public void TurnOffPlatform()
     {
         _shouldBeOn = false;
         _boxCollider.enabled = false;
         LeanTween.alpha(this.gameObject, 0, GameConfig.Instance.TimeToTurnOff);
+        GetComponent<ShadowCaster2D>().enabled = _shouldBeOn;
     }
 
     private void CompleteOn()
