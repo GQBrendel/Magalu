@@ -16,4 +16,12 @@ public class GameConfigScriptableObject : ScriptableObject
     public float IconMovementTime;
     public float IconFadeTime;
 
+    [Header("Energy Power")]
+    public float HeadCost;
+    public float DorsoCost;
+    public float WheelCost;
+
+    public float RefillRate = 2f;
+    public float OverHeatDelay;
+
 }
