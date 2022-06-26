@@ -21,7 +21,11 @@ namespace KartGame.KartSystems
             // set RPM value for the FMOD event
             float effectiveRPM = Mathf.Lerp(minRPM, maxRPM, kartSpeed);
             var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
-            emitter.SetParameter("RPM", effectiveRPM);
+
+            emitter.Play();
+
+
+            //emitter.SetParameter("RPM", effectiveRPM);
         }
     }
 }

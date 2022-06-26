@@ -6,15 +6,59 @@ public class PlayerPowersManager : MonoBehaviour
 {
     [SerializeField] private int _currentHead;
     [SerializeField] private Sprite[] _playerHeadSprites;
+    [SerializeField] private UIManager _uIManager;
+
+    private PowerUp[] _powerUps;
 
     private OnPlatform[] _onPlatforms;
 
     private Character _character;
 
+    private UpgradePod[] _upgradePods;
+
+    public bool _holdingAPowerUp;
+
     private void Awake()
     {
         _character = FindObjectOfType<Character>(true); 
         _onPlatforms = FindObjectsOfType<OnPlatform>();
+        _powerUps = FindObjectsOfType<PowerUp>();
+        _upgradePods = FindObjectsOfType<UpgradePod>();
+        SetPowerUpListeners();
+    }
+    private void SetPowerUpListeners()
+    {
+        foreach (var pw in _powerUps)
+        {
+            pw.OnPowerUpColled += HandlePowerUpCollected;
+        }
+    }
+
+    private void HandlePowerUpCollected(PowerUp pw)
+    {
+        if (_holdingAPowerUp)
+        {
+            return;
+        }
+
+        _holdingAPowerUp = true;
+        pw.gameObject.SetActive(false);
+        _uIManager.ShowItemIcon(pw.Sprite.sprite);
+
+        foreach (var pod in _upgradePods)
+        {
+            pod.TurnOn();
+        }
+
+        switch (pw.BodyPart)
+        {
+            case BodyPartEnum.Head:
+                break;
+            case BodyPartEnum.Body:
+                break;
+            case BodyPartEnum.Feet:
+                break;
+        }
     }
 
     private void Update()
