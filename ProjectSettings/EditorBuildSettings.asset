@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/External Assets/2D Salmple Lost Crypt/Scenes/Main.unity
-    guid: a2b58d8c2e473104380da39b8eb2a7e5
+    path: Assets/_Project/Scenes/Menu.unity
+    guid: 6ee44f946226b1c41979feeda1e39a6c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Blocking.unity
+    guid: 4d1bb247a9ff1a347836fa2b57498d40
   m_configObjects: {}
