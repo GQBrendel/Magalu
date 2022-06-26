@@ -6,6 +6,9 @@ public class PlayerPowersManager : MonoBehaviour
 {
     [SerializeField] private int _currentHead;
     [SerializeField] private Sprite[] _playerHeadSprites;
+    [SerializeField] private int _currentDorso;
+    [SerializeField] private Sprite[] _playerDorsoSprites;
+    [SerializeField] private GameObject _dorsoLight;
     [SerializeField] private UIManager _uIManager;
 
     private PowerUp[] _powerUps;
@@ -67,6 +70,29 @@ public class PlayerPowersManager : MonoBehaviour
         {
             SwapHead();
         }
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            SwapDorso();
+        }
+    }
+
+    private void SwapDorso()
+    {
+        _currentDorso++;
+
+        if (_currentDorso >= _playerDorsoSprites.Length)
+        {
+            _currentDorso = 0;
+            _dorsoLight.SetActive(false);
+        }
+        else
+        {
+            _dorsoLight.SetActive(true);
+        }
+
+        _character.SetDorsoSprite(_playerDorsoSprites[_currentDorso]);
+
     }
 
     private void SwapHead()
