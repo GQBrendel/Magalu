@@ -16,16 +16,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Character")]
     [SerializeField] Animator animator = null;
-    [SerializeField] Transform puppet = null;
-    [SerializeField] CharacterAudio audioPlayer = null;
-
-    [Header("Tail")]
-    [SerializeField] Transform tailAnchor = null;
-    [SerializeField] Rigidbody2D tailRigidbody = null;
-
-    [Header("Equipment")]
-    [SerializeField] Transform handAnchor = null;
-    [SerializeField] UnityEngine.U2D.Animation.SpriteLibrary spriteLibrary = null;
+    [SerializeField] private Transform robot;
 
     [Header("Movement")]
     [SerializeField] float acceleration = 0.0f;
@@ -99,18 +90,12 @@ public class CharacterController2D : MonoBehaviour
         if (!CanMove || keyboard == null)
             return;
 
-        // Horizontal movement
-        float moveHorizontal = 0.0f;
+        float h = Input.GetAxisRaw("Horizontal");      
 
-        if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed)
-            moveHorizontal = -1.0f;
-        else if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
-            moveHorizontal = 1.0f;
-
-        movementInput = new Vector2(moveHorizontal, 0);
+        movementInput = new Vector2(h, 0);
 
         // Jumping input
-        if (!isJumping && keyboard.spaceKey.wasPressedThisFrame)
+        if (!isJumping && Input.GetButton("Jump"))
             jumpInput = true;
     }
 
@@ -120,7 +105,6 @@ public class CharacterController2D : MonoBehaviour
         UpdateVelocity();
         UpdateDirection();
         UpdateJump();
-        UpdateTailPose();
         UpdateGravityScale();
 
         prevVelocity = controllerRigidbody.velocity;
@@ -162,7 +146,6 @@ public class CharacterController2D : MonoBehaviour
         animator.SetFloat(animatorRunningSpeed, horizontalSpeedNormalized);
 
         // Play audio
-        audioPlayer.PlaySteps(groundType, horizontalSpeedNormalized);
     }
 
     private void UpdateJump()
@@ -187,7 +170,6 @@ public class CharacterController2D : MonoBehaviour
             isJumping = true;
 
             // Play audio
-            audioPlayer.PlayJump();
         }
 
         // Landed
@@ -205,7 +187,6 @@ public class CharacterController2D : MonoBehaviour
             isFalling = false;
 
             // Play audio
-            audioPlayer.PlayLanding(groundType);
         }
     }
 
@@ -215,27 +196,14 @@ public class CharacterController2D : MonoBehaviour
         if (controllerRigidbody.velocity.x > minFlipSpeed && isFlipped)
         {
             isFlipped = false;
-            puppet.localScale = Vector3.one;
+            robot.localScale = Vector3.one;
         }
         else if (controllerRigidbody.velocity.x < -minFlipSpeed && !isFlipped)
         {
             isFlipped = true;
-            puppet.localScale = flippedScale;
+            robot.localScale = flippedScale;
         }
-    }
-
-    private void UpdateTailPose()
-    {
-        // Calculate the extrapolated target position of the tail anchor.
-        Vector2 targetPosition = tailAnchor.position;
-        targetPosition += controllerRigidbody.velocity * Time.fixedDeltaTime;
-
-        tailRigidbody.MovePosition(targetPosition);
-        if (isFlipped)
-            tailRigidbody.SetRotation(tailAnchor.rotation * flippedRotation);
-        else
-            tailRigidbody.SetRotation(tailAnchor.rotation);
-    }
+    }   
 
     private void UpdateGravityScale()
     {
@@ -249,18 +217,5 @@ public class CharacterController2D : MonoBehaviour
         }
 
         controllerRigidbody.gravityScale = gravityScale;
-    }
-
-    public void GrabItem(Transform item)
-    {
-        // Attach item to hand
-        item.SetParent(handAnchor, false);
-        item.localPosition = Vector3.zero;
-        item.localRotation = Quaternion.identity;
-    }
-
-    public void SwapSprites(UnityEngine.U2D.Animation.SpriteLibraryAsset spriteLibraryAsset)
-    {
-        spriteLibrary.spriteLibraryAsset = spriteLibraryAsset;
     }
 }

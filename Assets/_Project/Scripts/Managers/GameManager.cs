@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameConfigScriptableObject _gameConfig;
     [SerializeField] private Transform _characterOriginPosition;
     [SerializeField] private ThreatsManager _threatsManager;
 
@@ -22,7 +21,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitDelay());
         IEnumerator WaitDelay()
         {
-            yield return new WaitForSeconds(_gameConfig.DeathTriggerDelay);
+            yield return new WaitForSeconds(GameConfig.Instance.DeathTriggerDelay);
             _character.transform.position = _characterOriginPosition.position;
         }
     }

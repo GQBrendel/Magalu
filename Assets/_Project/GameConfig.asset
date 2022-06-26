@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   DeathTriggerDelay: 0.55
+  TimeToTurnOn: 0.35
+  TimeToTurnOff: 0.35

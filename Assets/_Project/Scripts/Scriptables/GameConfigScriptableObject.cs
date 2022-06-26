@@ -6,4 +6,9 @@ using UnityEngine;
 public class GameConfigScriptableObject : ScriptableObject
 {
     public float DeathTriggerDelay;
+
+    [Header("Light Up Platform")]
+    public float TimeToTurnOn;
+    public float TimeToTurnOff;
+
 }
