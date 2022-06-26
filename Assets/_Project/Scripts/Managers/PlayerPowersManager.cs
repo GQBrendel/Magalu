@@ -15,6 +15,7 @@ public class PlayerPowersManager : MonoBehaviour
     [SerializeField] private GameObject _dorsoLight;
 
     public bool CanSwap { get; set; }
+    public bool canRead;
 
     private PowerUp[] _powerUps;
 
@@ -155,6 +156,7 @@ public class PlayerPowersManager : MonoBehaviour
         }
         else if (_currentHead == 2)
         {
+            canRead = true;
             TurnOffPlatforms();
         }
     }
@@ -185,8 +187,12 @@ public class PlayerPowersManager : MonoBehaviour
     }
     private void StopPowerHead()
     {
-
         TurnOffPlatforms();
+
+        if(_currentHead == 2)
+        {
+            canRead = false;
+        }
     }
     private void StartPowerWheel()
     {
