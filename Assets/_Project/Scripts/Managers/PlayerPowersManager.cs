@@ -26,6 +26,8 @@ public class PlayerPowersManager : MonoBehaviour
 
     public bool _holdingAPowerUp;
 
+    private bool m_isAxisInUse = false;
+
     private void Awake()
     {
         _character = FindObjectOfType<Character>(true); 
@@ -40,6 +42,30 @@ public class PlayerPowersManager : MonoBehaviour
         if (!CanSwap)
         {
             return;
+        }
+
+        float swapHead = Input.GetAxisRaw("SwapHead");
+        //Debug.Log("Swap Head " + swapHead);
+
+        if (swapHead != 0)
+        {
+            if (m_isAxisInUse == false)
+            {
+                if(swapHead > 0)
+                {
+                    SwapHead();
+                }
+                else if (swapHead < 0)
+                {
+                    SwapWheels();
+                }
+                // Call your event function here.
+                m_isAxisInUse = true;
+            }
+        }
+        if (swapHead == 0)
+        {
+            m_isAxisInUse = false;
         }
 
         if (Input.GetButtonDown("SwapHead"))
@@ -161,6 +187,11 @@ public class PlayerPowersManager : MonoBehaviour
         }
 
         EquipHead(_currentHead);
+    }
+
+    private void SwapWheels()
+    {
+
     }
 
     private void TurnOnPlatforms()
