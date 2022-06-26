@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
@@ -27,6 +29,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float fallGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
     [SerializeField] bool resetSpeedOnLand = false;
+
+    public EventReference _landSound;
+    public EventReference _jumpSound;
+    public EventReference _moveSound;
+    public EventReference _turnSound;
 
     private Rigidbody2D controllerRigidbody;
     private Collider2D controllerCollider;
@@ -95,8 +102,10 @@ public class CharacterController2D : MonoBehaviour
         movementInput = new Vector2(h, 0);
 
         // Jumping input
-        if (!isJumping && Input.GetButton("Jump"))
+        if (!isJumping && Input.GetButtonDown("Jump"))
+        {
             jumpInput = true;
+        }
     }
 
     void FixedUpdate()
@@ -146,7 +155,13 @@ public class CharacterController2D : MonoBehaviour
         animator.SetFloat(animatorRunningSpeed, horizontalSpeedNormalized);
 
         // Play audio
+
+        //AudioManager.Instance.Play(_moveSound);
+
+        _playerMoveSound.SetActive(horizontalSpeedNormalized > 0.2f && !isJumping);
     }
+
+    [SerializeField] private GameObject _playerMoveSound;
 
     private void UpdateJump()
     {
@@ -170,6 +185,8 @@ public class CharacterController2D : MonoBehaviour
             isJumping = true;
 
             // Play audio
+
+            AudioManager.Instance.Play(_jumpSound);
         }
 
         // Landed
@@ -186,7 +203,7 @@ public class CharacterController2D : MonoBehaviour
             isJumping = false;
             isFalling = false;
 
-            // Play audio
+            AudioManager.Instance.Play(_landSound);           
         }
     }
 
@@ -197,11 +214,13 @@ public class CharacterController2D : MonoBehaviour
         {
             isFlipped = false;
             robot.localScale = Vector3.one;
+            AudioManager.Instance.Play(_turnSound);
         }
         else if (controllerRigidbody.velocity.x < -minFlipSpeed && !isFlipped)
         {
             isFlipped = true;
             robot.localScale = flippedScale;
+            AudioManager.Instance.Play(_turnSound);
         }
     }   
 
