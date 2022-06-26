@@ -252,20 +252,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 4820806495792060421}
     m_ColliderPaths:
-    - - X: 244938512
-        Y: 245768352
-      - X: -816653120
-        Y: 245768352
-      - X: -816653120
-        Y: -108108976
-      - X: 244938512
-        Y: -108108976
+    - - X: 1588108672
+        Y: 406089632
+      - X: -399492640
+        Y: 406089632
+      - X: -399492640
+        Y: -32698020
+      - X: 1588108672
+        Y: -32698020
   m_CompositePaths:
     m_Paths:
-    - - {x: 24.493849, y: -10.810898}
-      - {x: 24.493849, y: 24.576836}
-      - {x: -81.66531, y: 24.576832}
-      - {x: -81.66531, y: -10.810898}
+    - - {x: 158.81087, y: -3.269802}
+      - {x: 158.81087, y: 40.608963}
+      - {x: -39.949265, y: 40.60896}
+      - {x: -39.94926, y: -3.269802}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!61 &4820806495792060421
@@ -281,7 +281,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -28.585732, y: 6.882969}
+  m_Offset: {x: 59.4308, y: 18.66958}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -292,7 +292,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 106.159164, y: 35.387733}
+  m_Size: {x: 198.76013, y: 43.878765}
   m_EdgeRadius: 0
 --- !u!1 &6300299078224898655
 GameObject:
@@ -320,7 +320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6300299078224898655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52.64, y: 5.74, z: -10}
+  m_LocalPosition: {x: 109.2, y: 17.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -357,7 +357,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4601227, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -444,7 +444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6300299078473300525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52.64, y: 1.3400002, z: -10}
+  m_LocalPosition: {x: 109.2, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -474,14 +474,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 6
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4601227, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -678,20 +678,20 @@ MonoBehaviour:
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
   m_XDamping: 1
-  m_YDamping: 1
+  m_YDamping: 0.1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.8
+  m_ScreenY: 0.65
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.2
+  m_DeadZoneWidth: 0.125
   m_DeadZoneHeight: 0.1
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneHeight: 0.284
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.00000032393825
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_PivotOffset: {x: 0, y: 1.73, z: 0}
   m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: -415.43448, y: -661.69763, z: -29.730682}
@@ -782,7 +782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6300299079675219922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52.64, y: 1.3400002, z: -10}
+  m_LocalPosition: {x: 109.2, y: 12, z: -10}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -816,7 +816,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
