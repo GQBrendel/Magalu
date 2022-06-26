@@ -18,3 +18,8 @@ MonoBehaviour:
   PodDelay: 2
   IconMovementTime: 2
   IconFadeTime: 1
+  HeadCost: 5
+  DorsoCost: 3
+  WheelCost: 2
+  RefillRate: 1.5
+  OverHeatDelay: 1
