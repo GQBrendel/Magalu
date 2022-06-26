@@ -233,7 +233,7 @@ MonoBehaviour:
   Path: FMOD Project/MagaluFMOD/Build/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 637918694432154507
+  lastModified: 637918708233742092
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -271,7 +271,7 @@ MonoBehaviour:
   - {fileID: -278722643107462836}
   StringsBanks:
   - {fileID: 365930687361084170}
-  cacheTime: 637918694432179596
+  cacheTime: 637918708233742092
   cacheVersion: 131591
 --- !u!114 &365930687361084170
 MonoBehaviour:

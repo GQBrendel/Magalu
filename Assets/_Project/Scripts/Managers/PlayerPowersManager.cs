@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerPowersManager : MonoBehaviour
 {
     [SerializeField] private int _currentHead;
-    [SerializeField] private Sprite[] _playerHeadSprites;
     [SerializeField] private int _currentDorso;
-    [SerializeField] private Sprite[] _playerDorsoSprites;
+
+    [SerializeField] private List<Sprite> _playerDorsoSprites;
+    [SerializeField] private List<Sprite> _playerHeadSprites;
+
     [SerializeField] private UIManager _uIManager;
 
     [Header("Player References")]
@@ -29,11 +31,7 @@ public class PlayerPowersManager : MonoBehaviour
 
     private EnergyBar _energyBar;
 
-
     public bool _holdingAPowerUp;
-
-    private bool _headAxisInUse = false;
-    private bool _dorsoAxisInUse = false;
 
     private void Awake()
     {
@@ -149,12 +147,12 @@ public class PlayerPowersManager : MonoBehaviour
             StopPowerHead();
             return;
         }
-        else if (_currentHead == 1) //Ligadora de plataformas
+        else if (_currentHead == 2) //Ligadora de plataformas
         {
             _energyBar.WasteEnergy(GameConfig.Instance.HeadCost);
             TurnOnPlatforms(); 
         }
-        else if (_currentHead == 2)
+        else if (_currentHead == 1)
         {
             canRead = true;
             TurnOffPlatforms();
@@ -257,12 +255,22 @@ public class PlayerPowersManager : MonoBehaviour
         }
     }
 
+    bool gambiarra = false;
+
     private void EquipDorso(int index)
     {
         StopPowerDorso();
-        _currentDorso = index;        
+        _currentDorso = index;
+
+        if (!_playerDorsoSprites.Contains(_currentPowerUp.Sprite.sprite))
+        {
+            if (_currentPowerUp.BodyPart == BodyPartEnum.Body)
+                _playerDorsoSprites.Add(_currentPowerUp.Sprite.sprite);
+        }
+
         _character.SetDorsoSprite(_playerDorsoSprites[_currentDorso]);
 
+        
         if (_currentDorso == 0)
         {
             _dorsoLight.SetActive(false);
@@ -275,26 +283,27 @@ public class PlayerPowersManager : MonoBehaviour
         {
             _dorsoLight.SetActive(false);
         }
+
+        if(gambiarra == false)
+        {
+            gambiarra = true;
+            _dorsoLight.SetActive(false);
+        }
     }
 
     private void EquipHead(int index)
     {
         _currentHead = index;
-        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
-        StopPowerHead();
 
-        /*if (_currentHead == 0)
+        if (!_playerHeadSprites.Contains(_currentPowerUp.Sprite.sprite))
         {
-            TurnOffPlatforms();
+            if(_currentPowerUp.BodyPart == BodyPartEnum.Head)
+                _playerHeadSprites.Add(_currentPowerUp.Sprite.sprite);
         }
-        else if (_currentHead == 1) //Ligadora de plataformas
-        {
-            TurnOnPlatforms();
-        }
-        else if (_currentHead == 2)
-        {
-            TurnOffPlatforms();
-        }*/
+
+        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
+
+        StopPowerHead();
     }
 
     private void HandlePowerUpCollected(PowerUp pw)
@@ -320,7 +329,7 @@ public class PlayerPowersManager : MonoBehaviour
     {
         _currentHead++;
 
-        if(_currentHead >= _playerHeadSprites.Length)
+        if(_currentHead >= _playerHeadSprites.Count)
         {
             _currentHead = 0;
         }
