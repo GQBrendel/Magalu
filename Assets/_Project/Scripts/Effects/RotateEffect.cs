@@ -10,7 +10,7 @@ public class RotateEffect : MonoBehaviour
     private void Start()
     {
 //        InvokeRepeating("Rotate", 0, _repeatRate);
-        StartCoroutine(RotateRoutine());
+    //    StartCoroutine(RotateRoutine());
     }
 
     private IEnumerator RotateRoutine()
@@ -23,6 +23,11 @@ public class RotateEffect : MonoBehaviour
     }
 
     private void Rotate()
+    {
+        transform.Rotate(_rotateAngle, Space.Self);
+    }
+
+    private void FixedUpdate()
     {
         transform.Rotate(_rotateAngle, Space.Self);
     }
