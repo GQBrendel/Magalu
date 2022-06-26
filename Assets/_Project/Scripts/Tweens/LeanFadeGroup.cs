@@ -70,6 +70,21 @@ namespace nl.DTT.OSRVR.UI
             }
         }
 
+        public void FadeInstant(bool fadeIn)
+        {
+            FadeStyle fade = fadeIn ? FadeStyle.FadeIn : FadeStyle.FadeOut;
+            switch (fade)
+            {
+                case FadeStyle.FadeIn:
+                           LeanTween.value(gameObject, minMaxAlpha.x, minMaxAlpha.y, 0).setOnUpdate((float val) => { group.alpha = val; }).setEase(easingStyle);
+                    break;
+                case FadeStyle.FadeOut:
+                        if (gameObject.activeInHierarchy)
+                            LeanTween.value(gameObject, minMaxAlpha.y, minMaxAlpha.x, 0).setOnUpdate((float val) => { group.alpha = val; }).setEase(easingStyle).setOnComplete(() => { if (inactiveOnTransparent) { gameObject.SetActive(false); } });
+                    break;
+            }
+
+        }
         /// <summary>
         /// Start fading the gameobject's recttransform
         /// </summary>

@@ -11,4 +11,9 @@ public class GameConfigScriptableObject : ScriptableObject
     public float TimeToTurnOn;
     public float TimeToTurnOff;
 
+    [Header("Upgrade Pod")]
+    public float PodDelay;
+    public float IconMovementTime;
+    public float IconFadeTime;
+
 }

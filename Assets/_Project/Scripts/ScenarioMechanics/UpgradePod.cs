@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class UpgradePod : MonoBehaviour
 
     [SerializeField] private GameObject[] _lights;
     [SerializeField] private Transform _playerMoveToPosition;
+    [SerializeField] private GameObject _effectLight;
 
     public bool _isOn;
 
@@ -30,7 +32,13 @@ public class UpgradePod : MonoBehaviour
 
     public void TurnOff()
     {
-
+        _isOn = false; 
+        
+        foreach (var light in _lights)
+        {
+            LeanTween.alpha(light, 0, 1);
+        }
+        _effectLight.SetActive(false);
     }
 
     private void PodIsOn()
@@ -52,6 +60,17 @@ public class UpgradePod : MonoBehaviour
             character.DisableControl();
 
             LeanTween.move(character.gameObject, _playerMoveToPosition.position, 1f);
+            TurnOnEffect();
+        }
+    }
+
+    private void TurnOnEffect()
+    {
+        StartCoroutine(EffectWait());
+        IEnumerator EffectWait()
+        {
+            yield return new WaitForSeconds(2f);
+            _effectLight.SetActive(true);
         }
     }
 }

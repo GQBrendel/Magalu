@@ -15,3 +15,6 @@ MonoBehaviour:
   DeathTriggerDelay: 0.55
   TimeToTurnOn: 0.35
   TimeToTurnOff: 0.35
+  PodDelay: 2
+  IconMovementTime: 2
+  IconFadeTime: 1
