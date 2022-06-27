@@ -7,13 +7,99 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001C85E13CD08 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000286F3B3E868 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {9f7a4f5b-8d7b-44a7-9c4e-043afe336223}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {3ba4e7b3-defb-434f-af73-7f3a151f5b2d}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {3ba4e7b3-defb-434f-af73-7f3a151f5b2d}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {3ba4e7b3-defb-434f-af73-7f3a151f5b2d}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {c47f5a75-e6e9-4c73-9863-e58efe116d74}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {6de3d553-3bec-4b8e-a6e1-5f3b807415fd}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {90d0fc62-f959-470c-8cf3-70b87e4c5b00}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {94ae76a9-aee1-4721-a10c-50e37e0993ad}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
+[WRN] ObjectLookup::get                        : Lookup failed for EventModel: {def1df87-d2cc-4b83-bc02-dba451337e86}
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::finishLoadBank                  : Bank with guid {d100ffc4-9718-41d7-b641-181373b55498} has already been loaded
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::finishLoadBank                  : Bank with guid {d100ffc4-9718-41d7-b641-181373b55498} has already been loaded
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
