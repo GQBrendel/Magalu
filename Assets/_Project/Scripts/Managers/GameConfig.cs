@@ -13,6 +13,8 @@ public class GameConfig : MonoBehaviour
     public float IconMovementTime { get { return _gameConfig.IconMovementTime; } }
     public float IconFadeTime { get { return _gameConfig.IconFadeTime; } }
 
+    public float BlendingLightTime { get { return _gameConfig.BlendingLightTime; } }
+
     public float HeadCost { get { return _gameConfig.HeadCost; } }
     public float DorsoCost { get { return _gameConfig.DorsoCost; } }
     public float WheelCost { get { return _gameConfig.WheelCost; } }

@@ -11,15 +11,18 @@ public class UpgradePod : MonoBehaviour
     [SerializeField] private GameObject[] _lights;
     [SerializeField] private Transform _playerMoveToPosition;
     [SerializeField] private GameObject _effectLight;
+    private BoxCollider2D _boxCollider;
 
     public bool _isOn;
 
     private void Awake()
     {
+        TryGetComponent(out _boxCollider);
         foreach(var light in _lights)
         {
             LeanTween.alpha(light, 0, 0);
         }
+        _boxCollider.enabled = false;
     }
 
     public void TurnOn()
@@ -38,12 +41,14 @@ public class UpgradePod : MonoBehaviour
         {
             LeanTween.alpha(light, 0, 1);
         }
-        _effectLight.SetActive(false);
+        _effectLight.SetActive(false); 
+        _boxCollider.enabled = false;
     }
 
     private void PodIsOn()
     {
         _isOn = true;
+        _boxCollider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

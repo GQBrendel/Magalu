@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerPowersManager : MonoBehaviour
 {
-    [SerializeField] private int _currentHead;
-    [SerializeField] private int _currentDorso;
+    [SerializeField] private PowerType _currentHeadPower;
+    [SerializeField] private PowerType _currentDorsoPower;
 
-    [SerializeField] private List<Sprite> _playerDorsoSprites;
-    [SerializeField] private List<Sprite> _playerHeadSprites;
+    [SerializeField] private List<PowerUp> _playerDorso;
+    [SerializeField] private List<PowerUp> _playerHeads;
 
     [SerializeField] private UIManager _uIManager;
 
@@ -16,22 +16,20 @@ public class PlayerPowersManager : MonoBehaviour
     [SerializeField] private GameObject _tunderaLight;
     [SerializeField] private GameObject _dorsoLight;
 
-    public bool CanSwap { get; set; }
+    public bool IsOnUpgradeProcess { get; set; }
     public bool canRead;
 
     private PowerUp[] _powerUps;
-
     private OnPlatform[] _onPlatforms;
-
     private Character _character;
-
     private UpgradePod[] _upgradePods;
-
     private PowerUp _currentPowerUp;
-
     private EnergyBar _energyBar;
 
     public bool _holdingAPowerUp;
+
+    private int _headCount = 0;
+    private int _dorsoCount = 0;
 
     private void Awake()
     {
@@ -42,56 +40,14 @@ public class PlayerPowersManager : MonoBehaviour
         _energyBar = FindObjectOfType<EnergyBar>(true);
 
         SetPowerUpListeners();
-        CanSwap = true;
+      //  CanSwap = true;
     }
     private void Update()
     {
-        if (!CanSwap)
+        if (IsOnUpgradeProcess)
         {
             return;
         }
-
-        //float swapHead = Input.GetAxisRaw("SwapHead");
-        //float swapWheel = Input.GetAxisRaw("SwapWheel");
-
-
-        /*if (swapHead != 0)
-        {
-            if (_headAxisInUse == false)
-            {
-                if(swapHead > 0)
-                {
-                    SwapHead();
-                }
-                else if (swapHead < 0)
-                {
-                    SwapWheels();
-                }
-                // Call your event function here.
-                _headAxisInUse = true;
-            }
-        }
-        else if (swapWheel != 0)
-        {
-            if (_dorsoAxisInUse == false)
-            {
-                if (swapWheel > 0)
-                {
-                    SwapWheels();
-                }
-                // Call your event function here.
-                _dorsoAxisInUse = true;
-            }
-
-        }*/
-        /*if (swapHead == 0)
-        {
-            _headAxisInUse = false;
-        }*/
-        /*if (swapWheel == 0)
-        {
-            _dorsoAxisInUse = false;
-        }*/
 
         if (Input.GetButtonDown("SwapHead"))
         {
@@ -138,24 +94,22 @@ public class PlayerPowersManager : MonoBehaviour
 
     private void StartPowerHead()
     {
-        if (_currentHead == 0)
-        {
-            return;
-        }
         if (!HasEnergy())
         {
             StopPowerHead();
             return;
         }
-        else if (_currentHead == 2) //Ligadora de plataformas
+
+        switch (_currentHeadPower)
         {
-            _energyBar.WasteEnergy(GameConfig.Instance.HeadCost);
-            TurnOnPlatforms(); 
-        }
-        else if (_currentHead == 1)
-        {
-            canRead = true;
-            TurnOffPlatforms();
+            case PowerType.ReadSignsHead:
+                canRead = true;
+                TurnOffPlatforms();
+                break;
+            case PowerType.LightPlatformsHead:
+                _energyBar.WasteEnergy(GameConfig.Instance.HeadCost);
+                TurnOnPlatforms();
+                break;      
         }
     }
 
@@ -163,9 +117,10 @@ public class PlayerPowersManager : MonoBehaviour
     {        
         if (!HasEnergy())
         {
+            StopPowerHead();
             return;
         }
-        if (_currentHead == 0)
+        if (_currentHeadPower == PowerType.None)
         {
             return;
         }
@@ -175,9 +130,10 @@ public class PlayerPowersManager : MonoBehaviour
     {
         if (!HasEnergy())
         {
+            StopPowerDorso();
             return;
         }
-        if (_currentDorso == 0)
+        if (_currentDorsoPower == PowerType.None)
         {
             return;
         }
@@ -187,7 +143,7 @@ public class PlayerPowersManager : MonoBehaviour
     {
         TurnOffPlatforms();
 
-        if(_currentHead == 2)
+        if(_currentHeadPower == PowerType.ReadSignsHead)
         {
             canRead = false;
         }
@@ -219,9 +175,15 @@ public class PlayerPowersManager : MonoBehaviour
             StopPowerDorso();
             return;
         }
-        EquipDorso(1);
+
+        switch (_currentDorsoPower)
+        {
+            case PowerType.LightDorso:
+                _dorsoLight.SetActive(true);
+                break;
+        }
+
         _energyBar.WasteEnergy(GameConfig.Instance.DorsoCost);
-        _dorsoLight.SetActive(true);
     }
     private void StopPowerDorso()
     {
@@ -236,72 +198,53 @@ public class PlayerPowersManager : MonoBehaviour
         }
     }
 
-    public void EquipPower()
+    public void EquipPowerByMachine()
     {
-        CanSwap = true;
+        if (!_currentPowerUp)
+        {
+            Debug.LogError($"Trying to equip a power but the player does not have a upgrade");
+        }
+
         _holdingAPowerUp = false;
         switch (_currentPowerUp.BodyPart)
         {
             case BodyPartEnum.Head:
-
-                EquipHead(_currentPowerUp.PartIndex);
-
+                EquipHead(_currentPowerUp);
                 break;
             case BodyPartEnum.Body:
-                EquipDorso(_currentPowerUp.PartIndex);
+                EquipDorso(_currentPowerUp);
                 break;
             case BodyPartEnum.Feet:
                 break;
         }
     }
 
-    bool gambiarra = false;
-
-    private void EquipDorso(int index)
+    public void EquipDorso(PowerUp power)
     {
+        _currentDorsoPower = power.PowerType;
+
+        if (!_playerDorso.Contains(power))
+        {
+            if (power.BodyPart == BodyPartEnum.Head)
+                _playerDorso.Add(power);
+        }
+
+        _character.SetDorsoSprite(power);
+
         StopPowerDorso();
-        _currentDorso = index;
-
-        if (!_playerDorsoSprites.Contains(_currentPowerUp.Sprite.sprite))
-        {
-            if (_currentPowerUp.BodyPart == BodyPartEnum.Body)
-                _playerDorsoSprites.Add(_currentPowerUp.Sprite.sprite);
-        }
-
-        _character.SetDorsoSprite(_playerDorsoSprites[_currentDorso]);
-
-        
-        if (_currentDorso == 0)
-        {
-            _dorsoLight.SetActive(false);
-        }
-        else if (_currentDorso == 1)
-        {
-            _dorsoLight.SetActive(true);
-        }
-        else if (_currentDorso == 2)
-        {
-            _dorsoLight.SetActive(false);
-        }
-
-        if(gambiarra == false)
-        {
-            gambiarra = true;
-            _dorsoLight.SetActive(false);
-        }
     }
 
-    private void EquipHead(int index)
+    public void EquipHead(PowerUp power)
     {
-        _currentHead = index;
+        _currentHeadPower = power.PowerType;
 
-        if (!_playerHeadSprites.Contains(_currentPowerUp.Sprite.sprite))
+        if (!_playerHeads.Contains(power))
         {
-            if(_currentPowerUp.BodyPart == BodyPartEnum.Head)
-                _playerHeadSprites.Add(_currentPowerUp.Sprite.sprite);
+            if(power.BodyPart == BodyPartEnum.Head)
+                _playerHeads.Add(power);
         }
 
-        _character.SetHeadSprite(_playerHeadSprites[_currentHead]);
+        _character.SetHeadSprite(power);
 
         StopPowerHead();
     }
@@ -321,20 +264,24 @@ public class PlayerPowersManager : MonoBehaviour
         foreach (var pod in _upgradePods)
         {
             pod.TurnOn();
-        }
-
-       
+        }      
     }
+
     private void SwapHead()
     {
-        _currentHead++;
-
-        if(_currentHead >= _playerHeadSprites.Count)
+        if (_playerHeads.Count <= 1)
         {
-            _currentHead = 0;
+            return;
         }
 
-        EquipHead(_currentHead);
+        _headCount++;
+
+        if(_headCount >= _playerHeads.Count)
+        {
+            _headCount = 0;
+        }
+
+        EquipHead(_playerHeads[_headCount]);
     }
 
     private void SwapWheels()
@@ -350,7 +297,12 @@ public class PlayerPowersManager : MonoBehaviour
         _tunderaLight.gameObject.SetActive(true);
         foreach (var plat in _onPlatforms)
         {
-            plat.TurnOnPlatform();
+            float distance = Vector2.Distance(_character.transform.position, plat.transform.position);
+
+            if(distance < 50f)
+            {
+                plat.TurnOnPlatform();
+            }
         }
     }
     private void TurnOffPlatforms()

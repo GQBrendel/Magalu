@@ -7,6 +7,9 @@ public class GameConfigScriptableObject : ScriptableObject
 {
     public float DeathTriggerDelay;
 
+    [Header("Global Light")]
+    public float BlendingLightTime;
+
     [Header("Light Up Platform")]
     public float TimeToTurnOn;
     public float TimeToTurnOff;

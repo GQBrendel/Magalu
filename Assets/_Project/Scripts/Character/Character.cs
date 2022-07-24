@@ -12,14 +12,14 @@ public class Character : MonoBehaviour
         TryGetComponent(out _characterController);
     }
 
-    internal void SetHeadSprite(Sprite sprite)
+    internal void SetHeadSprite(PowerUp power)
     {
-        _headSprite.sprite = sprite;
+        _headSprite.sprite = power.Sprite.sprite;
     }
 
-    internal void SetDorsoSprite(Sprite sprite)
+    internal void SetDorsoSprite(PowerUp power)
     {
-        _dorsoSprite.sprite = sprite;
+        _dorsoSprite.sprite = power.Sprite.sprite;
     }
 
     internal void DisableControl()

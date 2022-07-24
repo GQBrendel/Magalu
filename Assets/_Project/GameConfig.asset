@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   DeathTriggerDelay: 0.5
+  BlendingLightTime: 0.45
   TimeToTurnOn: 0.35
   TimeToTurnOff: 0.35
   PodDelay: 2

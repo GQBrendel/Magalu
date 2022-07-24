@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleUpgradeFinished()
     {
-        _playerPowerManager.EquipPower();
+        _playerPowerManager.EquipPowerByMachine();
+        _playerPowerManager.IsOnUpgradeProcess = false;
         _character.EnableControl(); 
         DIsablePodLight();
         _closeUpCamera.SetActive(false);
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleUpgradeStart()
     {
-        _playerPowerManager.CanSwap = false;
+        _playerPowerManager.IsOnUpgradeProcess = true;
         _closeUpCamera.SetActive(true);
         StartCoroutine(WaitForPodZoomRoutine());
 
