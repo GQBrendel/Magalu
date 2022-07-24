@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e92621f9-fd9c-4123-9247-38e1092f6e9b}">
+		<property name="assetPath">
+			<value>Gameplay Sfx/Sfx_Player_Land_02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.69854875283446716</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{69bbe8d0-95ca-447a-a913-bf6d67bc7976}</destination>
+		</relationship>
+	</object>
+</objects>
