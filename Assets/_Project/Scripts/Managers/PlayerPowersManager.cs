@@ -17,6 +17,7 @@ public class PlayerPowersManager : MonoBehaviour
     [SerializeField] private GameObject _dorsoLight;
 
     public bool IsOnUpgradeProcess { get; set; }
+    public bool InfinyEnergyHack { get; set; }
     public bool canRead;
 
     private PowerUp[] _powerUps;
@@ -159,13 +160,17 @@ public class PlayerPowersManager : MonoBehaviour
 
     private bool HasEnergy()
     {
+        if (InfinyEnergyHack)
+        {
+            return true;
+        }
+
         if (_energyBar.CurrentEnergy <= 0.2f)
         {
             _energyBar.Overheat();
             return false;
         }
         return true;
-
     }
 
     private void StartPowerDorso()

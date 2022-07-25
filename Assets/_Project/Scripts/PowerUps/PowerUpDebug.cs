@@ -11,15 +11,16 @@ public class PowerUpDebug : MonoBehaviour
     [SerializeField] private PowerUp _dorsoLight;
 
     private PlayerPowersManager _playerPowersManager;
+    private bool _infinityEnergy;
 
     private void Awake()
     {
         if (Application.isEditor)
         {
-            _DebugUI.SetActive(Application.isEditor);
             _playerPowersManager = FindObjectOfType<PlayerPowersManager>();
             StartCoroutine(DebugRoutine());
         }
+        _DebugUI.SetActive(Application.isEditor);
     }
 
     private IEnumerator DebugRoutine()
@@ -37,6 +38,11 @@ public class PowerUpDebug : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.F3))
             {
                 _playerPowersManager.EquipDorso(_dorsoLight);
+            }
+            else if (Input.GetKeyDown(KeyCode.F4))
+            {
+                _infinityEnergy = !_infinityEnergy;
+                _playerPowersManager.InfinyEnergyHack = _infinityEnergy;
             }
 
             yield return null;
